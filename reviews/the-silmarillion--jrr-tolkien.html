@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Review: The Silmarillion by J.R.R. Tolkien</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#1a1612;--paper:#f5f0e8;--muted:#7a6f62;--rule:#d4c9b8;--accent:#8b3a2a}
+    body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;padding:2rem 1rem 4rem}
+    .page{max-width:660px;margin:0 auto}
+    header{border-bottom:2px solid var(--ink);padding-bottom:.75rem;margin-bottom:1.75rem}
+    header h1{font-family:'Libre Baskerville',Georgia,serif;font-size:1.1rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    #output h1,#output h2,#output h3{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;margin-top:1.6rem;margin-bottom:.4rem;line-height:1.3}
+    #output h1{font-size:1.35rem} #output h2{font-size:1.15rem;border-bottom:1px solid var(--rule);padding-bottom:.25rem}
+    #output h3{font-size:1rem;color:var(--muted)} #output p{margin-bottom:.85rem}
+    #output strong{font-weight:700} #output em{font-style:italic}
+    #output ul,#output ol{margin:0 0 .85rem 1.4rem} #output li{margin-bottom:.3rem}
+    #output sup{font-size:.7rem;vertical-align:super;line-height:0;color:var(--accent)}
+    #output a{color:var(--accent);text-decoration:none} #output a:hover{text-decoration:underline}
+    .footnotes{margin-top:1.5rem;padding-top:.75rem;border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);line-height:1.5}
+    #related{margin-top:1.5rem} #related h2{font-family:'Libre Baskerville',Georgia,serif;font-size:1.15rem;font-weight:700;border-bottom:1px solid var(--rule);padding-bottom:.25rem;margin-bottom:.9rem}
+    .related-book{margin-bottom:1rem;padding-left:.75rem;border-left:2px solid var(--rule)}
+    .rb-title{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;font-size:.98rem}
+    .rb-author{font-size:.88rem;color:var(--muted);margin-bottom:.2rem}
+    .rb-reason{font-size:.9rem;margin-bottom:.3rem}
+    .rb-link{font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+    .rb-link:hover{text-decoration:underline}
+    .meta{font-size:.8rem;color:var(--muted);margin-top:2rem}
+  </style>
+</head>
+<body>
+<div class="page">
+  <header><h1>Book Review Summary</h1></header>
+  <div id="output"></div>
+  <div id="related"></div>
+  <p class="meta">Generated April 2, 2026</p>
+</div>
+<script>
+  const TINYCAT_BASE = "https://www.librarycat.org/lib/dispensed_snores";
+  const storedData = {"review":"## Overview\n\n*The Silmarillion* is J.R.R. Tolkien's posthumously published mythology of Middle-earth, edited by his son Christopher Tolkien and released in 1977. It chronicles the creation of the world, the rebellion of the dark lord Morgoth, and the tragic heroism of Elves and Men across thousands of years before the events of *The Lord of the Rings*. Written in an elevated, archaic prose style reminiscent of ancient epics, it serves as the foundational legendarium for all of Tolkien's fantasy works.\n\n## Critical Reception\n\nUpon publication, *The Silmarillion* received a divided response from critics and readers alike. Some praised its ambitious scope and mythopoeic grandeur, with reviewers noting Tolkien's success in creating a complete cosmology.<sup>[1]</sup> Others found its dense prose, lack of dialogue, and vast cast of characters inaccessible compared to the more narrative-driven *Hobbit* and *Lord of the Rings*.<sup>[2]</sup> Academic critics have increasingly recognized its literary merit, viewing it as Tolkien's most personal and artistically serious work. Over time, dedicated fans have embraced it as essential reading for understanding the depth of Tolkien's created world.\n\n## Review Voices\n\n**The Literary Critic**: Considers it Tolkien's attempt at writing genuine mythology in the tradition of the *Kalevala* and Norse *Eddas*, admiring its linguistic craft even while acknowledging its challenging structure.<sup>[1]</sup>\n\n**The Casual Reader**: Often finds the book overwhelming, comparing it to reading the Old Testament with its genealogies, archaic names, and episodic storytelling rather than a conventional novel.\n\n**The Devoted Tolkien Scholar**: Views *The Silmarillion* as the heart of Tolkien's life work, essential for understanding the moral and spiritual dimensions underlying Middle-earth.<sup>[2]</sup>\n\n**The Fantasy Enthusiast**: Appreciates the world-building depth but wishes for more accessible storytelling and character development.\n\n## Bottom Line\n\n*The Silmarillion* is a demanding but rewarding masterwork of mythopoeic literature, essential for serious Tolkien admirers though not the best entry point for newcomers.","footnotes":["John Gardner, The New York Times Book Review, 1977","Peter Conrad, The New Statesman, 1977"],"related":[{"title":"The Kalevala","author":"Elias Lönnrot","reason":"The Finnish national epic that directly inspired Tolkien's mythological style and several elements of his Elvish languages and stories."},{"title":"The Children of Húrin","author":"J.R.R. Tolkien","reason":"A standalone narrative expansion of one of The Silmarillion's most tragic tales, presented in more accessible novel form."},{"title":"A Fire Upon the Deep","author":"Vernor Vinge","reason":"An epic science fiction novel with similar scope, featuring ancient cosmic conflicts and richly developed alien mythologies."}]};
+  const fullMd = "## Overview\n\n*The Silmarillion* is J.R.R. Tolkien's posthumously published mythology of Middle-earth, edited by his son Christopher Tolkien and released in 1977. It chronicles the creation of the world, the rebellion of the dark lord Morgoth, and the tragic heroism of Elves and Men across thousands of years before the events of *The Lord of the Rings*. Written in an elevated, archaic prose style reminiscent of ancient epics, it serves as the foundational legendarium for all of Tolkien's fantasy works.\n\n## Critical Reception\n\nUpon publication, *The Silmarillion* received a divided response from critics and readers alike. Some praised its ambitious scope and mythopoeic grandeur, with reviewers noting Tolkien's success in creating a complete cosmology.<sup>[1]</sup> Others found its dense prose, lack of dialogue, and vast cast of characters inaccessible compared to the more narrative-driven *Hobbit* and *Lord of the Rings*.<sup>[2]</sup> Academic critics have increasingly recognized its literary merit, viewing it as Tolkien's most personal and artistically serious work. Over time, dedicated fans have embraced it as essential reading for understanding the depth of Tolkien's created world.\n\n## Review Voices\n\n**The Literary Critic**: Considers it Tolkien's attempt at writing genuine mythology in the tradition of the *Kalevala* and Norse *Eddas*, admiring its linguistic craft even while acknowledging its challenging structure.<sup>[1]</sup>\n\n**The Casual Reader**: Often finds the book overwhelming, comparing it to reading the Old Testament with its genealogies, archaic names, and episodic storytelling rather than a conventional novel.\n\n**The Devoted Tolkien Scholar**: Views *The Silmarillion* as the heart of Tolkien's life work, essential for understanding the moral and spiritual dimensions underlying Middle-earth.<sup>[2]</sup>\n\n**The Fantasy Enthusiast**: Appreciates the world-building depth but wishes for more accessible storytelling and character development.\n\n## Bottom Line\n\n*The Silmarillion* is a demanding but rewarding masterwork of mythopoeic literature, essential for serious Tolkien admirers though not the best entry point for newcomers.\n\n<div class=\"footnotes\">\n\n1. John Gardner, The New York Times Book Review, 1977\n2. Peter Conrad, The New Statesman, 1977\n\n</div>";
+
+  document.getElementById("output").innerHTML = marked.parse(fullMd);
+
+  const related = storedData.related || [];
+  if (related.length > 0) {
+    const c = document.getElementById("related");
+    c.innerHTML = "<h2>You Might Also Like</h2>";
+    related.forEach(b => {
+      const url = TINYCAT_BASE + "/search?search_type=title&search=" + encodeURIComponent(b.title);
+      const d = document.createElement("div");
+      d.className = "related-book";
+      d.innerHTML =
+        '<div class="rb-title">' + b.title + '</div>' +
+        '<div class="rb-author">' + b.author + '</div>' +
+        '<div class="rb-reason">' + b.reason + '</div>' +
+        '<a class="rb-link" href="' + url + '" target="_blank" rel="noopener">Search in My Library ↗</a>';
+      c.appendChild(d);
+    });
+  }
+</script>
+</body>
+</html>
