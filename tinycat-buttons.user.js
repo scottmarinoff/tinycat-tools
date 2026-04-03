@@ -1,14 +1,16 @@
 (function () {
-  if (window.location.pathname.indexOf("/item/") !== -1) {
-    const ABEBOOKS_SEARCH  = "https://www.abebooks.com/servlet/SearchResults?kn=";
-    const LIBRARY_SEARCH   = "https://discover.midhudsonlibraries.org/search?searchType=title&universalLimiterIds=at_library&materialTypeIds=b&languageIds=eng&pageNum=0&query=";
 
-    // ── UPDATE THIS to your actual GitHub Pages URL once deployed ──
-    const REVIEW_PAGE = "https://scottmarinoff.github.io/tinycat-tools/book-reviews.html";
+  // ── Detail page buttons ──────────────────────────────────────────────────
+  if (window.location.pathname.indexOf("/item/") !== -1) {
+    const ABEBOOKS_SEARCH = "https://www.abebooks.com/servlet/SearchResults?pt=book&kn=";
+    const GOOGLE_REVIEWS  = "https://www.google.com/search?q=";
+    const GOOGLE_SITES    = "+site%3Abookmarks.reviews+%7C+site%3Anytimes.com+%7C+site%3Anewyorker.com+%7C+site%3ABooklistonline.com+%7C+site%3Akirkusreviews.com+%7C+site%3Apublishersweekly.com";
+    const LIBRARY_SEARCH  = "https://discover.midhudsonlibraries.org/search?searchType=title&universalLimiterIds=at_library&materialTypeIds=b&languageIds=eng&pageNum=0&query=";
 
     function mainTitle(full) {
       return full.replace(/\s*:.*$/, "").trim();
     }
+
     function makeButton(text, url) {
       const btn = document.createElement("a");
       btn.href = url;
@@ -37,22 +39,21 @@
       });
       return btn;
     }
+
     function injectDetailPage() {
       const social = document.querySelector("#social");
       if (!social || social.dataset.abeInjected) return;
       social.dataset.abeInjected = "1";
+
       const h1 = document.querySelector("h1");
       const h2 = document.querySelector("h2");
       const authorEl = h2 && h2.querySelector("a");
+
       const fullTitle  = h1 ? h1.textContent.trim() : "";
       const shortTitle = mainTitle(fullTitle);
       const author     = authorEl ? authorEl.textContent.trim() : "";
 
-      // Build review page URL with title + author as query params
-      const reviewsUrl = REVIEW_PAGE
-        + "?title="  + encodeURIComponent(shortTitle)
-        + "&author=" + encodeURIComponent(author);
-
+      const reviewsUrl = GOOGLE_REVIEWS + encodeURIComponent(shortTitle) + GOOGLE_SITES;
       const libraryUrl = LIBRARY_SEARCH + encodeURIComponent(shortTitle);
       const abeUrl     = ABEBOOKS_SEARCH + encodeURIComponent(fullTitle + (author ? " " + author : ""));
 
@@ -60,10 +61,51 @@
       social.appendChild(makeButton("Find at Library", libraryUrl));
       social.appendChild(makeButton("Search AbeBooks", abeUrl));
     }
+
     injectDetailPage();
     new MutationObserver(injectDetailPage).observe(document.body, {
       childList: true,
       subtree: true,
     });
   }
+
+  // ── "No results" LibraryThing link ──────────────────────────────────────
+  if (window.location.pathname.indexOf("/search") !== -1) {
+    function injectNoResults() {
+      const noResults = document.querySelector(".alert-warning, .noresults, [class*='noresult']");
+      if (!noResults || noResults.dataset.ltInjected) return;
+      noResults.dataset.ltInjected = "1";
+
+      const params = new URLSearchParams(window.location.search);
+      const query  = params.get("search") || params.get("term") || "";
+      if (!query) return;
+
+      const ltUrl = "https://www.librarything.com/search.php?search="
+        + encodeURIComponent(query)
+        + "&searchtype=101&sortchoice=0";
+
+      const link = document.createElement("a");
+      link.href = ltUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Search LibraryThing";
+      link.style.cssText = [
+        "display:inline-block",
+        "margin-top:8px",
+        "font-size:13px",
+        "color:#b44",
+        "text-decoration:underline",
+        "cursor:pointer",
+      ].join(";");
+
+      noResults.appendChild(link);
+    }
+
+    injectNoResults();
+    new MutationObserver(injectNoResults).observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
 })();
