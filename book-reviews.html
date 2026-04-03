@@ -687,6 +687,8 @@ Requirements for each field:
   });
 
   // Auto-trigger if credentials already saved
+  // To clear local storage, run this one-liner in the browser console on your GitHub Pages domain:
+  // JavaScript: ['claude_api_key','gh_token','gh_repo'].forEach(k => localStorage.removeItem(k));
   if (localStorage.getItem("claude_api_key") && title) {
     document.getElementById("generate-btn").click();
   }
