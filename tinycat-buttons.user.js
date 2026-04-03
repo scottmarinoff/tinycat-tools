@@ -91,7 +91,7 @@
       link.textContent = "Search LibraryThing";
       link.style.cssText = [
         "display:inline-block",
-        "margin-top:8px",
+        "margin-left:6px",
         "font-size:13px",
         "color:#b44",
         "text-decoration:underline",
