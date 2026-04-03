@@ -101,9 +101,11 @@
       display: flex;
       gap: 0.5rem;
       margin-top: 0.5rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.6rem;
     }
-    button.action {
+
+    button.action, a.action {
+      display: inline-block;
       font-family: 'Source Sans 3', sans-serif;
       font-size: 0.85rem;
       font-weight: 600;
@@ -115,10 +117,22 @@
       border: none;
       border-radius: 3px;
       cursor: pointer;
+      text-decoration: none;
       transition: opacity 0.15s;
     }
-    button.action:hover { opacity: 0.85; }
+    button.action:hover, a.action:hover { opacity: 0.85; }
     button.action:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    #settings-link-row {
+      margin-bottom: 1rem;
+    }
+    #settings-link {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    #settings-link:hover { color: var(--accent); }
 
     #notice {
       padding: 0.6rem 0.9rem;
@@ -239,6 +253,9 @@
       margin-top: 1rem;
     }
     #saved-badge.visible { display: block; }
+
+    #index-btn-row { display: none; margin-top: 2rem; }
+    #index-btn-row.visible { display: block; }
   </style>
 </head>
 <body>
@@ -257,7 +274,7 @@
   </div>
   <div class="settings-row">
     <label for="gh-token-input">GitHub Token</label>
-    <input type="password" id="gh-token-input" placeholder="ghp_…" autocomplete="off" spellcheck="false" />
+    <input type="password" id="gh-token-input" placeholder="github_pat_… or ghp_…" autocomplete="off" spellcheck="false" />
   </div>
   <div class="settings-row">
     <label for="gh-repo-input">GitHub Repo</label>
@@ -267,6 +284,10 @@
 
   <div id="btn-row">
     <button class="action" id="generate-btn">Get Reviews</button>
+  </div>
+
+  <div id="settings-link-row" style="display:none;">
+    <a href="#" id="settings-link">⚙ Settings</a>
   </div>
 
   <div id="notice"></div>
@@ -284,25 +305,22 @@
   <div id="related"></div>
   <div id="saved-badge">✓ Saved to reviews/</div>
 
+  <div id="index-btn-row">
+    <a class="action" href="reviews-index.html">Read other reviews</a>
+  </div>
+
 </div>
 <script>
   const TINYCAT_BASE = "https://www.librarycat.org/lib/dispensed_snores";
 
   // ── Repo normalization ─────────────────────────────────────────────────────
-  // Handles all of these:
-  //   scottmarinoff/tinycat-tools
-  //   https://github.com/scottmarinoff/tinycat-tools
-  //   https://github.com/scottmarinoff/tinycat-tools/
-  //   github.com/scottmarinoff/tinycat-tools
   function normalizeRepo(raw) {
     const s = raw.trim();
     if (!s) return "";
-    // Extract owner/repo from any URL containing github.com
     const urlMatch = s.match(/github\.com[/:]([^/\s]+)\/([^/\s?#]+)/i);
     if (urlMatch) return urlMatch[1] + "/" + urlMatch[2].replace(/\.git$/, "");
-    // Already in owner/repo form (contains exactly one slash, no protocol)
     if (/^[^/\s]+\/[^/\s]+$/.test(s)) return s;
-    return s; // pass through and let the API surface the error
+    return s;
   }
 
   // ── Helpers ────────────────────────────────────────────────────────────────
@@ -346,12 +364,12 @@
       .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
 
-  // ── Resolved repo display ──────────────────────────────────────────────────
+  // ── Repo display ───────────────────────────────────────────────────────────
   const ghRepoInput = document.getElementById("gh-repo-input");
   const repoDisplay = document.getElementById("repo-resolved");
 
   function updateRepoDisplay() {
-    const raw  = ghRepoInput.value.trim();
+    const raw = ghRepoInput.value.trim();
     if (!raw) { repoDisplay.className = ""; return; }
     const norm = normalizeRepo(raw);
     const ok   = /^[^/\s]+\/[^/\s]+$/.test(norm);
@@ -378,6 +396,32 @@
   if (localStorage.getItem("gh_repo"))        ghRepoInput.value = localStorage.getItem("gh_repo");
   updateRepoDisplay();
 
+  // ── Settings toggle ────────────────────────────────────────────────────────
+  const settingsLinkRow = document.getElementById("settings-link-row");
+  const settingsLink    = document.getElementById("settings-link");
+  const credRows        = document.querySelectorAll(".settings-row");
+  const btnRow          = document.getElementById("btn-row");
+
+  function hideCredentials() {
+    credRows.forEach(el => el.style.display = "none");
+    repoDisplay.style.display    = "none";
+    btnRow.style.display         = "none";
+    settingsLinkRow.style.display = "";
+  }
+
+  function showCredentials() {
+    credRows.forEach(el => el.style.display = "");
+    repoDisplay.style.display    = "";
+    btnRow.style.display         = "";
+    settingsLinkRow.style.display = "none";
+    updateRepoDisplay();
+  }
+
+  settingsLink.addEventListener("click", e => {
+    e.preventDefault();
+    showCredentials();
+  });
+
   // ── GitHub API ─────────────────────────────────────────────────────────────
   function getRepo() { return normalizeRepo(ghRepoInput.value); }
 
@@ -389,8 +433,10 @@
   }
 
   async function ghGet(path) {
-    return fetch(`https://api.github.com/repos/${getRepo()}/contents/${path}`, {
-      headers: ghHeaders()
+    // raw.githubusercontent.com avoids CORS preflight failures on 404
+    const repo = getRepo();
+    return fetch(`https://raw.githubusercontent.com/${repo}/main/${path}`, {
+      cache: "no-store"
     });
   }
 
@@ -433,22 +479,15 @@ Requirements for each field:
 "related": Array of up to 3 objects. If the book is fiction, recommend similar novels or story collections. If nonfiction, recommend related books on the same subject or theme. Each object has "title", "author", and "reason" (one sentence explaining the connection). Empty array [] if you have no confident recommendations.`;
   }
 
-  // ── Parse Claude's JSON response robustly ─────────────────────────────────
+  // ── Parse Claude JSON robustly ─────────────────────────────────────────────
   function parseClaudeResponse(raw) {
-    // 1. Strip markdown fences if present
     let text = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "").trim();
-
-    // 2. Try direct parse first
     try { return JSON.parse(text); } catch(e1) {}
-
-    // 3. Extract just the outermost {...} block and try again
     const brace = text.indexOf("{");
     const last  = text.lastIndexOf("}");
     if (brace !== -1 && last !== -1) {
       try { return JSON.parse(text.slice(brace, last + 1)); } catch(e2) {}
     }
-
-    // 4. Give up — return a best-effort object with the raw text as review
     return { review: text, footnotes: [], related: [] };
   }
 
@@ -479,10 +518,8 @@ Requirements for each field:
 
   // ── Extract stored data from saved review HTML ─────────────────────────────
   function extractStoredData(html) {
-    // New format: const storedData = {...};
     const m1 = html.match(/const storedData = (\{[\s\S]*?\});\s*\n/);
     if (m1) { try { return JSON.parse(m1[1]); } catch(e) {} }
-    // Legacy format: const md = "...";
     const m2 = html.match(/const md = ("[\s\S]*?");\s*\n/);
     if (m2) { try { return { review: JSON.parse(m2[1]), footnotes: [], related: [] }; } catch(e) {} }
     return null;
@@ -524,6 +561,8 @@ Requirements for each field:
     .rb-reason{font-size:.9rem;margin-bottom:.3rem}
     .rb-link{font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);text-decoration:none}
     .rb-link:hover{text-decoration:underline}
+    .index-btn{display:inline-block;margin-top:2rem;font-family:'Source Sans 3',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.45rem 1rem;background:var(--accent);color:#fff;border-radius:3px;text-decoration:none;transition:opacity .15s}
+    .index-btn:hover{opacity:.85}
     .meta{font-size:.8rem;color:var(--muted);margin-top:2rem}
   </style>
 </head>
@@ -532,6 +571,7 @@ Requirements for each field:
   <header><h1>Book Review Summary</h1></header>
   <div id="output"></div>
   <div id="related"></div>
+  <a class="index-btn" href="../reviews-index.html">Read other reviews</a>
   <p class="meta">Generated ${new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"})}</p>
 </div>
 <script>
@@ -576,12 +616,14 @@ Requirements for each field:
     if (ghRepoInput.value.trim()) localStorage.setItem("gh_repo", ghRepoInput.value.trim());
 
     hideNotice();
+    hideCredentials();
 
     const btn      = document.getElementById("generate-btn");
     const skeleton = document.getElementById("skeleton");
     const output   = document.getElementById("output");
     const related  = document.getElementById("related");
     const badge    = document.getElementById("saved-badge");
+    const indexRow = document.getElementById("index-btn-row");
 
     btn.disabled = true;
     badge.classList.remove("visible");
@@ -589,28 +631,28 @@ Requirements for each field:
     output.innerHTML = "";
     related.classList.remove("visible");
     related.innerHTML = "";
+    indexRow.classList.remove("visible");
 
-    // Step 1: check GitHub for an existing review
+    // Step 1: check GitHub for existing review
     if (token && repo) {
       setStatus("Checking for existing review…");
       try {
         const res = await ghGet(reviewFilename(title, author));
         if (res.ok) {
-          const data   = await res.json();
-          const raw    = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ""))));
+          const raw    = await res.text();
           const stored = extractStoredData(raw);
           if (stored) {
             setStatus("");
             showNotice("✓ Loaded existing saved review.", "good");
             renderMarkdown(stored.review + buildFootnotesMd(stored.footnotes));
             renderRelated(stored.related);
+            indexRow.classList.add("visible");
             btn.disabled = false;
             return;
           }
         }
       } catch (e) {
         console.warn("GitHub check failed:", e);
-        // Non-fatal — fall through to generate
       }
     }
 
@@ -642,7 +684,7 @@ Requirements for each field:
 
       const data = await response.json();
       const raw  = data?.content?.[0]?.text || "";
-      console.log("Raw Claude response:", raw); // visible in devtools if needed
+      console.log("Raw Claude response:", raw);
       parsed = parseClaudeResponse(raw);
 
     } catch (err) {
@@ -650,18 +692,20 @@ Requirements for each field:
       setStatus("");
       showNotice("Error: " + err.message, "error");
       btn.disabled = false;
+      showCredentials();
       return;
     }
 
     skeleton.classList.remove("visible");
     setStatus("");
 
-    const reviewMd = parsed.review    || "";
+    const reviewMd  = parsed.review    || "";
     const footnotes = parsed.footnotes || [];
     const relBooks  = parsed.related   || [];
 
     renderMarkdown(reviewMd + buildFootnotesMd(footnotes));
     renderRelated(relBooks);
+    indexRow.classList.add("visible");
 
     // Step 3: save to GitHub
     if (token && repo) {
@@ -687,9 +731,8 @@ Requirements for each field:
   });
 
   // Auto-trigger if credentials already saved
-  // To clear local storage, run this one-liner in the browser console on your GitHub Pages domain:
-  // JavaScript: ['claude_api_key','gh_token','gh_repo'].forEach(k => localStorage.removeItem(k));
   if (localStorage.getItem("claude_api_key") && title) {
+    hideCredentials();
     document.getElementById("generate-btn").click();
   }
 </script>

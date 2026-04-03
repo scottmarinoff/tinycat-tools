@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index of Reviews</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #1a1612;
+      --paper:  #f5f0e8;
+      --muted:  #7a6f62;
+      --rule:   #d4c9b8;
+      --accent: #8b3a2a;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .page { max-width: 660px; margin: 0 auto; }
+
+    /* ── Header ── */
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.75rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    header h1 {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── Sort controls ── */
+    #sort-controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      font-size: 0.825rem; /* ~3/4 of 1.1rem */
+      line-height: 1;
+    }
+    #sort-alpha, #sort-date {
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: inherit;
+      transition: color 0.15s;
+      letter-spacing: 0.06em;
+    }
+    #sort-alpha { font-weight: 700; }
+    #sort-date  { font-size: 1rem; }
+
+    /* Active = muted (matches header), inactive = accent */
+    #sort-alpha.active { color: var(--muted); cursor: default; }
+    #sort-alpha.inactive { color: var(--accent); }
+    #sort-date.active  { color: var(--muted); cursor: default; }
+    #sort-date.inactive { color: var(--accent); }
+
+    /* ── Status / error ── */
+    #status {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    #status.error { color: var(--accent); }
+
+    /* ── Skeleton ── */
+    .skeleton-wrap { display: none; }
+    .skeleton-wrap.visible { display: block; margin-bottom: 1rem; }
+    .skel {
+      height: 0.9rem;
+      background: linear-gradient(90deg, var(--rule) 25%, #e8e2d6 50%, var(--rule) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 2px;
+      margin-bottom: 0.65rem;
+    }
+    .skel.w-full { width: 100%; }
+    .skel.w-80   { width: 80%; }
+    .skel.w-60   { width: 60%; }
+    .skel.w-40   { width: 40%; }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ── Index list ── */
+    #index-list { display: none; }
+    #index-list.visible { display: block; }
+
+    .group { margin-bottom: 2rem; }
+
+    /* Group header rows */
+    .group-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .group-label {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 2rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .group-rule {
+      flex: 1;
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+
+    /* Year header (date mode) */
+    .year-block { margin-bottom: 2rem; }
+    .year-heading {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    hr.year-rule {
+      border: none;
+      border-top: 2px solid var(--rule);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Month label (date mode) */
+    .month-group { margin-bottom: 1.25rem; }
+    .month-label {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Review entries */
+    .review-entry {
+      padding: 0.6rem 0 0.6rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .review-entry:last-child { border-bottom: none; }
+
+    .entry-title {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .entry-title a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .entry-title a:hover { color: var(--accent); }
+
+    .entry-author {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 0.15rem;
+    }
+
+    .entry-bottom-line {
+      font-size: 0.9rem;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .entry-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* ── Empty state ── */
+    #empty {
+      display: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+    #empty.visible { display: block; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>Index of Reviews</h1>
+    <div id="sort-controls">
+      <button id="sort-alpha" class="active"  title="Sort alphabetically">ABC</button>
+      <button id="sort-date"  class="inactive" title="Sort by date added">📅</button>
+    </div>
+  </header>
+
+  <div id="status">Loading reviews…</div>
+
+  <div class="skeleton-wrap visible" id="skeleton">
+    <div class="skel w-full"></div><div class="skel w-80"></div>
+    <div class="skel w-60"></div><div class="skel w-full"></div>
+    <div class="skel w-40"></div><div class="skel w-80"></div>
+  </div>
+
+  <div id="index-list"></div>
+  <div id="empty">No reviews found in this repository.</div>
+
+</div>
+<script>
+  // ── Config ─────────────────────────────────────────────────────────────────
+  // Reads from localStorage (set by book-reviews.html) or falls back to a
+  // hardcoded default so the page works as a standalone public link too.
+  const REPO = (localStorage.getItem("gh_repo") || "").replace(/^https?:\/\/github\.com\//, "").trim()
+             || "scottmarinoff/tinycat-tools"; // fallback
+
+  const MONTHS = ["January","February","March","April","May","June",
+                  "July","August","September","October","November","December"];
+
+  // ── State ──────────────────────────────────────────────────────────────────
+  let allReviews = [];   // [{title, author, bottomLine, date, url}]
+  let sortMode   = "alpha"; // "alpha" | "date"
+
+  // ── Fetch file list from GitHub API (public, no token needed) ──────────────
+  async function fetchReviewList() {
+    const res = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/reviews`,
+      { headers: { "Accept": "application/vnd.github+json" }, cache: "no-store" }
+    );
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+    const files = await res.json();
+    return files.filter(f => f.name.endsWith(".html") && f.type === "file");
+  }
+
+  // ── Fetch and parse a single review file ───────────────────────────────────
+  async function fetchReview(file) {
+    const rawUrl = `https://raw.githubusercontent.com/${REPO}/main/reviews/${file.name}`;
+    const res = await fetch(rawUrl, { cache: "no-store" });
+    if (!res.ok) return null;
+    const html = await res.text();
+
+    // Extract storedData JSON
+    const m = html.match(/const storedData = (\{[\s\S]*?\});\s*\n/);
+    if (!m) return null;
+    let data;
+    try { data = JSON.parse(m[1]); } catch(e) { return null; }
+
+    // Extract bottom line from review markdown
+    const reviewMd   = data.review || "";
+    const blMatch    = reviewMd.match(/##\s*Bottom Line\s*\n+([\s\S]*?)(?:\n##|$)/i);
+    const bottomLine = blMatch ? blMatch[1].trim().replace(/\n/g, " ") : "";
+
+    // Parse title and author from filename: title-slug--author-slug.html
+    const base   = file.name.replace(/\.html$/, "");
+    const parts  = base.split("--");
+    const titleSlug  = parts[0] || base;
+    const authorSlug = parts[1] || "";
+
+    function unslugify(s) {
+      return s.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    // Try to get better title/author from the review markdown h1 if present
+    const h1Match = reviewMd.match(/^#\s+(.+)/m);
+
+    // Extract date from the meta line in the HTML
+    const dateMatch = html.match(/Generated ([A-Za-z]+ \d+, \d{4})/);
+    const dateStr   = dateMatch ? dateMatch[1] : null;
+    const date      = dateStr ? new Date(dateStr) : new Date(0);
+
+    // Public URL for this review file on GitHub Pages
+    const reviewUrl = `reviews/${file.name}`;
+
+    return {
+      title:      unslugify(titleSlug),
+      author:     authorSlug ? unslugify(authorSlug) : "",
+      bottomLine: bottomLine,
+      date:       date,
+      url:        reviewUrl
+    };
+  }
+
+  // ── Render ─────────────────────────────────────────────────────────────────
+  function renderAlpha(reviews) {
+    const sorted = [...reviews].sort((a, b) =>
+      a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+    );
+
+    // Group by first letter
+    const groups = {};
+    sorted.forEach(r => {
+      const letter = r.title[0].toUpperCase();
+      const key    = /[A-Z]/.test(letter) ? letter : "#";
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(r);
+    });
+
+    const container = document.getElementById("index-list");
+    container.innerHTML = "";
+
+    Object.keys(groups).sort().forEach(letter => {
+      const groupEl = document.createElement("div");
+      groupEl.className = "group";
+
+      const headerRow = document.createElement("div");
+      headerRow.className = "group-header";
+
+      const label = document.createElement("div");
+      label.className = "group-label";
+      label.textContent = letter;
+
+      const rule = document.createElement("hr");
+      rule.className = "group-rule";
+
+      headerRow.appendChild(label);
+      headerRow.appendChild(rule);
+      groupEl.appendChild(headerRow);
+
+      groups[letter].forEach(r => groupEl.appendChild(makeEntry(r, false)));
+      container.appendChild(groupEl);
+    });
+  }
+
+  function renderDate(reviews) {
+    const sorted = [...reviews].sort((a, b) => b.date - a.date);
+
+    // Group by year then month
+    const years = {};
+    sorted.forEach(r => {
+      const y = r.date.getFullYear() || "Unknown";
+      const m = r.date.getMonth();   // 0-indexed
+      if (!years[y]) years[y] = {};
+      if (!years[y][m]) years[y][m] = [];
+      years[y][m].push(r);
+    });
+
+    const container = document.getElementById("index-list");
+    container.innerHTML = "";
+
+    Object.keys(years).sort((a, b) => b - a).forEach(year => {
+      const yearBlock = document.createElement("div");
+      yearBlock.className = "year-block";
+
+      const yearHeading = document.createElement("div");
+      yearHeading.className = "year-heading";
+      yearHeading.textContent = year;
+      yearBlock.appendChild(yearHeading);
+
+      const yearRule = document.createElement("hr");
+      yearRule.className = "year-rule";
+      yearBlock.appendChild(yearRule);
+
+      const monthNums = Object.keys(years[year]).map(Number).sort((a, b) => b - a);
+      monthNums.forEach(m => {
+        const monthGroup = document.createElement("div");
+        monthGroup.className = "month-group";
+
+        const monthLabel = document.createElement("div");
+        monthLabel.className = "month-label";
+        monthLabel.textContent = MONTHS[m];
+        monthGroup.appendChild(monthLabel);
+
+        years[year][m].forEach(r => monthGroup.appendChild(makeEntry(r, true)));
+        yearBlock.appendChild(monthGroup);
+      });
+
+      container.appendChild(yearBlock);
+    });
+  }
+
+  function makeEntry(r, showDate) {
+    const entry = document.createElement("div");
+    entry.className = "review-entry";
+
+    const titleLine = document.createElement("div");
+    titleLine.className = "entry-title";
+    const link = document.createElement("a");
+    link.href = r.url;
+    link.textContent = r.title;
+    titleLine.appendChild(link);
+    entry.appendChild(titleLine);
+
+    if (r.author) {
+      const authorLine = document.createElement("div");
+      authorLine.className = "entry-author";
+      authorLine.textContent = r.author;
+      entry.appendChild(authorLine);
+    }
+
+    if (r.bottomLine) {
+      const bl = document.createElement("div");
+      bl.className = "entry-bottom-line";
+      bl.textContent = r.bottomLine;
+      entry.appendChild(bl);
+    }
+
+    if (showDate && r.date && r.date.getTime() > 0) {
+      const dl = document.createElement("div");
+      dl.className = "entry-date";
+      dl.textContent = r.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+      entry.appendChild(dl);
+    }
+
+    return entry;
+  }
+
+  function render() {
+    const list = document.getElementById("index-list");
+    if (allReviews.length === 0) {
+      list.classList.remove("visible");
+      document.getElementById("empty").classList.add("visible");
+      return;
+    }
+    document.getElementById("empty").classList.remove("visible");
+    list.classList.add("visible");
+    if (sortMode === "alpha") renderAlpha(allReviews);
+    else                      renderDate(allReviews);
+  }
+
+  // ── Sort controls ──────────────────────────────────────────────────────────
+  document.getElementById("sort-alpha").addEventListener("click", () => {
+    if (sortMode === "alpha") return;
+    sortMode = "alpha";
+    document.getElementById("sort-alpha").className = "active";
+    document.getElementById("sort-date").className  = "inactive";
+    render();
+  });
+
+  document.getElementById("sort-date").addEventListener("click", () => {
+    if (sortMode === "date") return;
+    sortMode = "date";
+    document.getElementById("sort-alpha").className = "inactive";
+    document.getElementById("sort-date").className  = "active";
+    render();
+  });
+
+  // ── Init ───────────────────────────────────────────────────────────────────
+  async function init() {
+    const status  = document.getElementById("status");
+    const skeleton = document.getElementById("skeleton");
+
+    try {
+      const files = await fetchReviewList();
+
+      if (files.length === 0) {
+        skeleton.classList.remove("visible");
+        status.textContent = "";
+        document.getElementById("empty").classList.add("visible");
+        return;
+      }
+
+      status.textContent = `Loading ${files.length} review${files.length > 1 ? "s" : ""}…`;
+
+      // Fetch all in parallel
+      const results = await Promise.all(files.map(fetchReview));
+      allReviews = results.filter(Boolean);
+
+      skeleton.classList.remove("visible");
+      status.textContent = "";
+      render();
+
+    } catch (err) {
+      skeleton.classList.remove("visible");
+      status.textContent = "Error loading reviews: " + err.message;
+      status.className = "error";
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>
