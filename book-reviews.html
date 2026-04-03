@@ -373,9 +373,9 @@
   const keyInput = document.getElementById("api-key-input");
   const ghToken  = document.getElementById("gh-token-input");
 
-  if (sessionStorage.getItem("claude_api_key")) keyInput.value = sessionStorage.getItem("claude_api_key");
-  if (sessionStorage.getItem("gh_token"))       ghToken.value  = sessionStorage.getItem("gh_token");
-  if (localStorage.getItem("gh_repo"))          ghRepoInput.value = localStorage.getItem("gh_repo");
+  if (localStorage.getItem("claude_api_key")) keyInput.value    = localStorage.getItem("claude_api_key");
+  if (localStorage.getItem("gh_token"))       ghToken.value     = localStorage.getItem("gh_token");
+  if (localStorage.getItem("gh_repo"))        ghRepoInput.value = localStorage.getItem("gh_repo");
   updateRepoDisplay();
 
   // ── GitHub API ─────────────────────────────────────────────────────────────
@@ -571,8 +571,8 @@ Requirements for each field:
     if (!apiKey) { showNotice("Please enter your Claude API key.", "error"); return; }
     if (!title)  { showNotice("No book title found in the URL.", "error"); return; }
 
-    sessionStorage.setItem("claude_api_key", apiKey);
-    if (token) sessionStorage.setItem("gh_token", token);
+    localStorage.setItem("claude_api_key", apiKey);
+    if (token) localStorage.setItem("gh_token", token);
     if (ghRepoInput.value.trim()) localStorage.setItem("gh_repo", ghRepoInput.value.trim());
 
     hideNotice();
@@ -687,7 +687,7 @@ Requirements for each field:
   });
 
   // Auto-trigger if credentials already saved
-  if (sessionStorage.getItem("claude_api_key") && title) {
+  if (localStorage.getItem("claude_api_key") && title) {
     document.getElementById("generate-btn").click();
   }
 </script>
