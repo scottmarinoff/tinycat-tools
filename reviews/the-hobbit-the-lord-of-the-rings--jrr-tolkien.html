@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Review: The Hobbit (The Lord of the Rings) by J.R.R. Tolkien</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#1a1612;--paper:#f5f0e8;--muted:#7a6f62;--rule:#d4c9b8;--accent:#8b3a2a}
+    body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;padding:2rem 1rem 4rem}
+    .page{max-width:660px;margin:0 auto}
+    header{border-bottom:2px solid var(--ink);padding-bottom:.75rem;margin-bottom:1.75rem}
+    header h1{font-family:'Libre Baskerville',Georgia,serif;font-size:1.1rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    #output h1,#output h2,#output h3{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;margin-top:1.6rem;margin-bottom:.4rem;line-height:1.3}
+    #output h1{font-size:1.35rem} #output h2{font-size:1.15rem;border-bottom:1px solid var(--rule);padding-bottom:.25rem}
+    #output h3{font-size:1rem;color:var(--muted)} #output p{margin-bottom:.85rem}
+    #output strong{font-weight:700} #output em{font-style:italic}
+    #output ul,#output ol{margin:0 0 .85rem 1.4rem} #output li{margin-bottom:.3rem}
+    #output sup{font-size:.7rem;vertical-align:super;line-height:0;color:var(--accent)}
+    #output a{color:var(--accent);text-decoration:none} #output a:hover{text-decoration:underline}
+    .footnotes{margin-top:1.5rem;padding-top:.75rem;border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);line-height:1.5}
+    #related{margin-top:1.5rem} #related h2{font-family:'Libre Baskerville',Georgia,serif;font-size:1.15rem;font-weight:700;border-bottom:1px solid var(--rule);padding-bottom:.25rem;margin-bottom:.9rem}
+    .related-book{margin-bottom:1rem;padding-left:.75rem;border-left:2px solid var(--rule)}
+    .rb-title{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;font-size:.98rem}
+    .rb-author{font-size:.88rem;color:var(--muted);margin-bottom:.2rem}
+    .rb-reason{font-size:.9rem;margin-bottom:.3rem}
+    .rb-link{font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+    .rb-link:hover{text-decoration:underline}
+    .index-btn{display:inline-block;margin-top:2rem;font-family:'Source Sans 3',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.45rem 1rem;background:var(--accent);color:#fff;border-radius:3px;text-decoration:none;transition:opacity .15s}
+    .index-btn:hover{opacity:.85}
+    .meta{font-size:.8rem;color:var(--muted);margin-top:2rem}
+  </style>
+</head>
+<body>
+<div class="page">
+  <header><h1>Book Review Summary</h1></header>
+  <div id="output"></div>
+  <div id="related"></div>
+  <a class="index-btn" href="../reviews-index.html">Read other reviews</a>
+  <p class="meta">Generated April 5, 2026</p>
+</div>
+<script>
+  const TINYCAT_BASE = "https://www.librarycat.org/lib/dispensed_snores";
+  const storedData = {"review":"## Overview\n\n*The Hobbit* is J.R.R. Tolkien's beloved 1937 fantasy novel that follows the unassuming hobbit Bilbo Baggins on an unexpected adventure with thirteen dwarves and the wizard Gandalf to reclaim a treasure guarded by the dragon Smaug. Written initially as a children's book, it serves as a prelude to Tolkien's epic *The Lord of the Rings* trilogy and established the foundation of Middle-earth's rich mythology.\n\n## Critical Reception\n\nUpon its release, *The Hobbit* received immediate critical acclaim and commercial success, praised for its imaginative world-building and accessible storytelling.<sup>[1]</sup> W.H. Auden called it \"one of the best children's stories of this century,\" noting its appeal to readers of all ages.<sup>[2]</sup> Critics have consistently celebrated Tolkien's ability to blend heroic epic traditions with a cozy, domestic sensibility. The novel has sold over 100 million copies worldwide and remains a cornerstone of modern fantasy literature. Its influence on the genre cannot be overstated, essentially codifying many tropes that define fantasy today.\n\n## Review Voices\n\n**The Literary Critic**: Tolkien's masterful use of the hero's journey archetype, combined with his philological expertise, creates a narrative that operates on multiple levels of meaning and rewards scholarly analysis.<sup>[2]</sup>\n\n**The Young Reader**: Bilbo's transformation from a timid homebody to a brave adventurer is thrilling and relatable, making the impossible feel achievable.\n\n**The Fantasy Enthusiast**: This is the book that launched a thousand quests—its world-building set the template for everything from Dungeons & Dragons to modern epic fantasy.\n\n**The Parent**: A perfect read-aloud book with just enough danger to excite children without overwhelming them, and enough wit to keep adults engaged.\n\n## Bottom Line\n\n*The Hobbit* remains an essential, timeless classic that enchants readers across generations with its perfect balance of adventure, humor, and heart.","footnotes":["C.S. Lewis, The Times Literary Supplement, 1937","W.H. Auden, The New York Times, 1954"],"related":[{"title":"The Chronicles of Narnia","author":"C.S. Lewis","reason":"Written by Tolkien's close friend and fellow Inkling, this fantasy series shares similar themes of heroism and moral growth in a richly imagined world."},{"title":"A Wizard of Earthsea","author":"Ursula K. Le Guin","reason":"Another foundational fantasy novel featuring a young protagonist's journey of self-discovery in a meticulously crafted secondary world."},{"title":"The Princess and the Goblin","author":"George MacDonald","reason":"A Victorian fantasy that directly influenced Tolkien, featuring underground goblins and a similar blend of fairy-tale wonder with moral depth."}]};
+  const fullMd = "## Overview\n\n*The Hobbit* is J.R.R. Tolkien's beloved 1937 fantasy novel that follows the unassuming hobbit Bilbo Baggins on an unexpected adventure with thirteen dwarves and the wizard Gandalf to reclaim a treasure guarded by the dragon Smaug. Written initially as a children's book, it serves as a prelude to Tolkien's epic *The Lord of the Rings* trilogy and established the foundation of Middle-earth's rich mythology.\n\n## Critical Reception\n\nUpon its release, *The Hobbit* received immediate critical acclaim and commercial success, praised for its imaginative world-building and accessible storytelling.<sup>[1]</sup> W.H. Auden called it \"one of the best children's stories of this century,\" noting its appeal to readers of all ages.<sup>[2]</sup> Critics have consistently celebrated Tolkien's ability to blend heroic epic traditions with a cozy, domestic sensibility. The novel has sold over 100 million copies worldwide and remains a cornerstone of modern fantasy literature. Its influence on the genre cannot be overstated, essentially codifying many tropes that define fantasy today.\n\n## Review Voices\n\n**The Literary Critic**: Tolkien's masterful use of the hero's journey archetype, combined with his philological expertise, creates a narrative that operates on multiple levels of meaning and rewards scholarly analysis.<sup>[2]</sup>\n\n**The Young Reader**: Bilbo's transformation from a timid homebody to a brave adventurer is thrilling and relatable, making the impossible feel achievable.\n\n**The Fantasy Enthusiast**: This is the book that launched a thousand quests—its world-building set the template for everything from Dungeons & Dragons to modern epic fantasy.\n\n**The Parent**: A perfect read-aloud book with just enough danger to excite children without overwhelming them, and enough wit to keep adults engaged.\n\n## Bottom Line\n\n*The Hobbit* remains an essential, timeless classic that enchants readers across generations with its perfect balance of adventure, humor, and heart.\n\n<div class=\"footnotes\">\n\n1. C.S. Lewis, The Times Literary Supplement, 1937\n2. W.H. Auden, The New York Times, 1954\n\n</div>";
+
+  document.getElementById("output").innerHTML = marked.parse(fullMd);
+
+  const related = storedData.related || [];
+  if (related.length > 0) {
+    const c = document.getElementById("related");
+    c.innerHTML = "<h2>You Might Also Like</h2>";
+    related.forEach(b => {
+      const url = TINYCAT_BASE + "/search?search_type=title&search=" + encodeURIComponent(b.title);
+      const d = document.createElement("div");
+      d.className = "related-book";
+      d.innerHTML =
+        '<div class="rb-title">' + b.title + '</div>' +
+        '<div class="rb-author">' + b.author + '</div>' +
+        '<div class="rb-reason">' + b.reason + '</div>' +
+        '<a class="rb-link" href="' + url + '" target="_blank" rel="noopener">Search in My Library ↗</a>';
+      c.appendChild(d);
+    });
+  }
+</script>
+</body>
+</html>
