@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Review: Slaughterhouse-Five by Kurt Vonnegut Jr.</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#1a1612;--paper:#f5f0e8;--muted:#7a6f62;--rule:#d4c9b8;--accent:#8b3a2a}
+    body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;padding:2rem 1rem 4rem}
+    .page{max-width:660px;margin:0 auto}
+    header{border-bottom:2px solid var(--ink);padding-bottom:.75rem;margin-bottom:1.75rem}
+    header h1{font-family:'Libre Baskerville',Georgia,serif;font-size:1.1rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    #output h1,#output h2,#output h3{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;margin-top:1.6rem;margin-bottom:.4rem;line-height:1.3}
+    #output h1{font-size:1.35rem} #output h2{font-size:1.15rem;border-bottom:1px solid var(--rule);padding-bottom:.25rem}
+    #output h3{font-size:1rem;color:var(--muted)} #output p{margin-bottom:.85rem}
+    #output strong{font-weight:700} #output em{font-style:italic}
+    #output ul,#output ol{margin:0 0 .85rem 1.4rem} #output li{margin-bottom:.3rem}
+    #output sup{font-size:.7rem;vertical-align:super;line-height:0;color:var(--accent)}
+    #output a{color:var(--accent);text-decoration:none} #output a:hover{text-decoration:underline}
+    .footnotes{margin-top:1.5rem;padding-top:.75rem;border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);line-height:1.5}
+    #related{margin-top:1.5rem} #related h2{font-family:'Libre Baskerville',Georgia,serif;font-size:1.15rem;font-weight:700;border-bottom:1px solid var(--rule);padding-bottom:.25rem;margin-bottom:.9rem}
+    .related-book{margin-bottom:1rem;padding-left:.75rem;border-left:2px solid var(--rule)}
+    .rb-title{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;font-size:.98rem}
+    .rb-author{font-size:.88rem;color:var(--muted);margin-bottom:.2rem}
+    .rb-reason{font-size:.9rem;margin-bottom:.3rem}
+    .rb-link{font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+    .rb-link:hover{text-decoration:underline}
+    .index-btn{display:inline-block;margin-top:2rem;font-family:'Source Sans 3',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.45rem 1rem;background:var(--accent);color:#fff;border-radius:3px;text-decoration:none;transition:opacity .15s}
+    .index-btn:hover{opacity:.85}
+    .meta{font-size:.8rem;color:var(--muted);margin-top:2rem}
+  </style>
+</head>
+<body>
+<div class="page">
+  <header><h1>Book Review Summary</h1></header>
+  <div id="output"></div>
+  <div id="related"></div>
+  <a class="index-btn" href="../reviews-index.html">Read other reviews</a>
+  <p class="meta">Generated April 5, 2026</p>
+</div>
+<script>
+  const TINYCAT_BASE = "https://www.librarycat.org/lib/dispensed_snores";
+  const storedData = {"review":"## Overview\n\n*Slaughterhouse-Five* is Kurt Vonnegut's genre-defying 1969 anti-war novel that blends science fiction, autobiography, and dark humor to chronicle Billy Pilgrim's experiences as a POW during the firebombing of Dresden. The narrative is famously non-linear, with Billy becoming \"unstuck in time\" and experiencing moments from his life—and his alien abduction by Tralfamadorians—in random order.\n\n## Critical Reception\n\nUpon publication, *Slaughterhouse-Five* was both celebrated and controversial, cementing Vonnegut's reputation as a major American voice.<sup>[1]</sup> Critics praised its innovative structure and its ability to convey the absurdity and horror of war without resorting to conventional heroics or sentimentality. The novel became a bestseller and a cultural touchstone of the Vietnam War era, resonating with readers questioning militarism.<sup>[2]</sup> It has faced frequent banning attempts in schools due to its language and anti-war themes, yet remains a staple of American literature curricula. Contemporary critics continue to regard it as one of the most important novels of the twentieth century.\n\n## Review Voices\n\n**The Literary Critic**: Vonnegut's fragmented structure brilliantly mirrors the trauma of war, making conventional narrative feel inadequate for such horror.<sup>[1]</sup>\n\n**The History Enthusiast**: The novel offers a visceral, unforgettable window into the Dresden bombing, an often-overlooked atrocity of World War II.\n\n**The Casual Reader**: The short chapters and dark humor make it surprisingly accessible, though the time-jumping can feel disorienting at first.\n\n**The Science Fiction Fan**: The Tralfamadorian philosophy about time and free will adds genuine philosophical depth beyond mere alien novelty.\n\n## Bottom Line\n\nA haunting, inventive masterpiece that uses absurdity to reveal the deepest truths about war and human suffering.","footnotes":["Tony Tanner, City of Words: American Fiction 1950-1970, 1971","Jerome Klinkowitz, Vonnegut in Fact: The Public Spokesmanship of Personal Fiction, 1998"],"related":[{"title":"Catch-22","author":"Joseph Heller","reason":"Another darkly comic, non-linear anti-war novel that uses absurdism to critique military bureaucracy and the madness of combat."},{"title":"The Things They Carried","author":"Tim O'Brien","reason":"A genre-blending work that similarly explores trauma, memory, and storytelling as ways of processing wartime experience."},{"title":"Cat's Cradle","author":"Kurt Vonnegut Jr.","reason":"Vonnegut's earlier satirical novel shares the same dark humor and philosophical questioning of human folly and destruction."}]};
+  const fullMd = "## Overview\n\n*Slaughterhouse-Five* is Kurt Vonnegut's genre-defying 1969 anti-war novel that blends science fiction, autobiography, and dark humor to chronicle Billy Pilgrim's experiences as a POW during the firebombing of Dresden. The narrative is famously non-linear, with Billy becoming \"unstuck in time\" and experiencing moments from his life—and his alien abduction by Tralfamadorians—in random order.\n\n## Critical Reception\n\nUpon publication, *Slaughterhouse-Five* was both celebrated and controversial, cementing Vonnegut's reputation as a major American voice.<sup>[1]</sup> Critics praised its innovative structure and its ability to convey the absurdity and horror of war without resorting to conventional heroics or sentimentality. The novel became a bestseller and a cultural touchstone of the Vietnam War era, resonating with readers questioning militarism.<sup>[2]</sup> It has faced frequent banning attempts in schools due to its language and anti-war themes, yet remains a staple of American literature curricula. Contemporary critics continue to regard it as one of the most important novels of the twentieth century.\n\n## Review Voices\n\n**The Literary Critic**: Vonnegut's fragmented structure brilliantly mirrors the trauma of war, making conventional narrative feel inadequate for such horror.<sup>[1]</sup>\n\n**The History Enthusiast**: The novel offers a visceral, unforgettable window into the Dresden bombing, an often-overlooked atrocity of World War II.\n\n**The Casual Reader**: The short chapters and dark humor make it surprisingly accessible, though the time-jumping can feel disorienting at first.\n\n**The Science Fiction Fan**: The Tralfamadorian philosophy about time and free will adds genuine philosophical depth beyond mere alien novelty.\n\n## Bottom Line\n\nA haunting, inventive masterpiece that uses absurdity to reveal the deepest truths about war and human suffering.\n\n<div class=\"footnotes\">\n\n1. Tony Tanner, City of Words: American Fiction 1950-1970, 1971\n2. Jerome Klinkowitz, Vonnegut in Fact: The Public Spokesmanship of Personal Fiction, 1998\n\n</div>";
+
+  document.getElementById("output").innerHTML = marked.parse(fullMd);
+
+  const related = storedData.related || [];
+  if (related.length > 0) {
+    const c = document.getElementById("related");
+    c.innerHTML = "<h2>You Might Also Like</h2>";
+    related.forEach(b => {
+      const url = TINYCAT_BASE + "/search?search_type=title&search=" + encodeURIComponent(b.title);
+      const d = document.createElement("div");
+      d.className = "related-book";
+      d.innerHTML =
+        '<div class="rb-title">' + b.title + '</div>' +
+        '<div class="rb-author">' + b.author + '</div>' +
+        '<div class="rb-reason">' + b.reason + '</div>' +
+        '<a class="rb-link" href="' + url + '" target="_blank" rel="noopener">Search in My Library ↗</a>';
+      c.appendChild(d);
+    });
+  }
+</script>
+</body>
+</html>
