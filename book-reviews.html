@@ -254,7 +254,7 @@
     }
     #saved-badge.visible { display: block; }
 
-    #index-btn-row { display: none; margin-top: 2rem; }
+    #index-btn-row { display: none; margin-top: 2rem; text-align: right; }
     #index-btn-row.visible { display: block; }
   </style>
 </head>
@@ -563,6 +563,7 @@ Requirements for each field:
     .rb-link:hover{text-decoration:underline}
     .index-btn{display:inline-block;margin-top:2rem;font-family:'Source Sans 3',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.45rem 1rem;background:var(--accent);color:#fff;border-radius:3px;text-decoration:none;transition:opacity .15s}
     .index-btn:hover{opacity:.85}
+    .index-btn-row{text-align:right}
     .meta{font-size:.8rem;color:var(--muted);margin-top:2rem}
   </style>
 </head>
@@ -571,7 +572,7 @@ Requirements for each field:
   <header><h1>Book Review Summary</h1></header>
   <div id="output"></div>
   <div id="related"></div>
-  <a class="index-btn" href="../reviews-index.html">Read other reviews</a>
+  <div class="index-btn-row"><a class="index-btn" href="../reviews-index.html">Read other reviews</a></div>
   <p class="meta">Generated ${new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"})}</p>
 </div>
 <script>
