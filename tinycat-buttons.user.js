@@ -3,12 +3,11 @@
   // ── Detail page buttons ──────────────────────────────────────────────────
   if (window.location.pathname.indexOf("/item/") !== -1) {
     const ABEBOOKS_SEARCH = "https://www.abebooks.com/servlet/SearchResults?pt=book&kn=";
-    const GOOGLE_REVIEWS  = "https://www.google.com/search?q=";
-    const GOOGLE_SITES    = "+site%3Abookmarks.reviews+%7C+site%3Anytimes.com+%7C+site%3Anewyorker.com+%7C+site%3ABooklistonline.com+%7C+site%3Akirkusreviews.com+%7C+site%3Apublishersweekly.com";
     const LIBRARY_SEARCH  = "https://discover.midhudsonlibraries.org/search?searchType=title&universalLimiterIds=at_library&materialTypeIds=b&languageIds=eng&pageNum=0&query=";
+    const REVIEW_PAGE     = "https://scottmarinoff.github.io/tinycat-tools/book-reviews.html";
 
     function mainTitle(full) {
-      return full.replace(/\s*:.*$/, "").trim();
+      return full.replace(/s*:.*$/, "").trim();
     }
 
     function makeButton(text, url) {
@@ -53,11 +52,13 @@
       const shortTitle = mainTitle(fullTitle);
       const author     = authorEl ? authorEl.textContent.trim() : "";
 
-      const reviewsUrl = GOOGLE_REVIEWS + encodeURIComponent(shortTitle) + GOOGLE_SITES;
+      const reviewsUrl = REVIEW_PAGE
+        + "?title="  + encodeURIComponent(shortTitle)
+        + "&author=" + encodeURIComponent(author);
       const libraryUrl = LIBRARY_SEARCH + encodeURIComponent(shortTitle);
       const abeUrl     = ABEBOOKS_SEARCH + encodeURIComponent(fullTitle + (author ? " " + author : ""));
 
-      social.appendChild(makeButton("Find Reviews", reviewsUrl));
+      social.appendChild(makeButton("Read Reviews", reviewsUrl));
       social.appendChild(makeButton("Find at Library", libraryUrl));
       social.appendChild(makeButton("Search AbeBooks", abeUrl));
     }
