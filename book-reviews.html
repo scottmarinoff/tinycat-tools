@@ -354,8 +354,12 @@
     out.classList.add("visible");
   }
 
+  // function tinycatUrl(bookTitle) {
+  //   return TINYCAT_BASE + "/search?search_type=title&search=" + encodeURIComponent(bookTitle);
+  // }
+
   function tinycatUrl(bookTitle) {
-    return TINYCAT_BASE + "/search?search_type=title&search=" + encodeURIComponent(bookTitle);
+    return TINYCAT_BASE + "/search/text/" + bookTitle.toLowerCase().replace(/\s+/g, "+");
   }
 
   function escHtml(str) {
@@ -587,7 +591,7 @@ Requirements for each field:
     const c = document.getElementById("related");
     c.innerHTML = "<h2>You Might Also Like<\/h2>";
     related.forEach(b => {
-      const url = TINYCAT_BASE + "/search?search_type=title&search=" + encodeURIComponent(b.title);
+      const url = TINYCAT_BASE + "/search/text/" + b.title.toLowerCase().replace(/\s+/g, "+");
       const d = document.createElement("div");
       d.className = "related-book";
       d.innerHTML =
