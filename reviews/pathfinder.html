@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Review: Pathfinder</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#1a1612;--paper:#f5f0e8;--muted:#7a6f62;--rule:#d4c9b8;--accent:#8b3a2a}
+    body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;padding:2rem 1rem 4rem}
+    .page{max-width:660px;margin:0 auto}
+    header{border-bottom:2px solid var(--ink);padding-bottom:.75rem;margin-bottom:1.75rem}
+    header h1{font-family:'Libre Baskerville',Georgia,serif;font-size:1.1rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    #output h1,#output h2,#output h3{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;margin-top:1.6rem;margin-bottom:.4rem;line-height:1.3}
+    #output h1{font-size:1.35rem} #output h2{font-size:1.15rem;border-bottom:1px solid var(--rule);padding-bottom:.25rem}
+    #output h3{font-size:1rem;color:var(--muted)} #output p{margin-bottom:.85rem}
+    #output strong{font-weight:700} #output em{font-style:italic}
+    #output ul,#output ol{margin:0 0 .85rem 1.4rem} #output li{margin-bottom:.3rem}
+    #output sup{font-size:.7rem;vertical-align:super;line-height:0;color:var(--accent)}
+    #output a{color:var(--accent);text-decoration:none} #output a:hover{text-decoration:underline}
+    .footnotes{margin-top:1.5rem;padding-top:.75rem;border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);line-height:1.5}
+    #related{margin-top:1.5rem} #related h2{font-family:'Libre Baskerville',Georgia,serif;font-size:1.15rem;font-weight:700;border-bottom:1px solid var(--rule);padding-bottom:.25rem;margin-bottom:.9rem}
+    .related-book{margin-bottom:1rem;padding-left:.75rem;border-left:2px solid var(--rule)}
+    .rb-title{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;font-size:.98rem}
+    .rb-author{font-size:.88rem;color:var(--muted);margin-bottom:.2rem}
+    .rb-reason{font-size:.9rem;margin-bottom:.3rem}
+    .rb-link{font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+    .rb-link:hover{text-decoration:underline}
+    .index-btn{display:inline-block;margin-top:2rem;font-family:'Source Sans 3',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.45rem 1rem;background:var(--accent);color:#fff;border-radius:3px;text-decoration:none;transition:opacity .15s}
+    .index-btn:hover{opacity:.85}
+    .index-btn-row{text-align:right}
+    .meta{font-size:.8rem;color:var(--muted);margin-top:2rem}
+  </style>
+</head>
+<body>
+<div class="page">
+  <header><h1>Book Review Summary</h1></header>
+  <div id="output"></div>
+  <div id="related"></div>
+  <div class="index-btn-row"><a class="index-btn" href="../reviews-index.html">Read other reviews</a></div>
+  <p class="meta">Generated April 30, 2026</p>
+</div>
+<script>
+  const TINYCAT_BASE = "https://www.librarycat.org/lib/dispensed_snores";
+  const storedData = {"review":"## Overview\n\n*Pathfinder* (2010) is a science fiction novel by Orson Scott Card that follows Rigg, a young man who discovers he has the ability to see the paths that people and animals have traveled through time. Set on a planet called Garden, the story blends time manipulation, political intrigue, and coming-of-age themes as Rigg uncovers secrets about his world's true nature and his own mysterious origins.\n\n## Critical Reception\n\nThe novel received generally positive reviews, with critics praising Card's return to the complex world-building that characterized his earlier works.<sup>[1]</sup> Readers appreciated the intricate time-travel mechanics and the intellectually stimulating puzzles woven throughout the narrative. Some reviewers noted that the pacing could feel slow in places, as Card dedicates significant attention to explaining the scientific and philosophical underpinnings of the story.<sup>[2]</sup> The book was well-received by young adult audiences while also appealing to Card's established adult readership.\n\n## Review Voices\n\n**The Science Fiction Enthusiast**: The time-path concept is genuinely innovative, and Card handles the paradoxes with impressive logical consistency.\n\n**The Young Adult Reader**: Rigg is a compelling protagonist whose journey of self-discovery feels authentic, even amid all the complex sci-fi elements.\n\n**The Literary Critic**: While the novel occasionally prioritizes exposition over emotional depth, it demonstrates Card's signature ability to craft philosophically rich speculative fiction.<sup>[1]</sup>\n\n**The Casual Reader**: The slow build-up pays off, but readers should be prepared for a story that demands attention and patience.\n\n## Bottom Line\n\n*Pathfinder* is an ambitious and thought-provoking science fiction novel that rewards patient readers with its intricate plotting and inventive time-manipulation concepts.","footnotes":["Publishers Weekly, 2010","Kirkus Reviews, 2010"],"related":[{"title":"Ender's Game","author":"Orson Scott Card","reason":"Card's most celebrated work shares similar themes of gifted young protagonists navigating complex moral landscapes."},{"title":"A Wrinkle in Time","author":"Madeleine L'Engle","reason":"Another young adult science fiction classic featuring young people, time manipulation, and journeys of discovery."},{"title":"The House of the Scorpion","author":"Nancy Farmer","reason":"A science fiction coming-of-age story that similarly explores identity, destiny, and political intrigue in a richly built world."}]};
+  const fullMd = "## Overview\n\n*Pathfinder* (2010) is a science fiction novel by Orson Scott Card that follows Rigg, a young man who discovers he has the ability to see the paths that people and animals have traveled through time. Set on a planet called Garden, the story blends time manipulation, political intrigue, and coming-of-age themes as Rigg uncovers secrets about his world's true nature and his own mysterious origins.\n\n## Critical Reception\n\nThe novel received generally positive reviews, with critics praising Card's return to the complex world-building that characterized his earlier works.<sup>[1]</sup> Readers appreciated the intricate time-travel mechanics and the intellectually stimulating puzzles woven throughout the narrative. Some reviewers noted that the pacing could feel slow in places, as Card dedicates significant attention to explaining the scientific and philosophical underpinnings of the story.<sup>[2]</sup> The book was well-received by young adult audiences while also appealing to Card's established adult readership.\n\n## Review Voices\n\n**The Science Fiction Enthusiast**: The time-path concept is genuinely innovative, and Card handles the paradoxes with impressive logical consistency.\n\n**The Young Adult Reader**: Rigg is a compelling protagonist whose journey of self-discovery feels authentic, even amid all the complex sci-fi elements.\n\n**The Literary Critic**: While the novel occasionally prioritizes exposition over emotional depth, it demonstrates Card's signature ability to craft philosophically rich speculative fiction.<sup>[1]</sup>\n\n**The Casual Reader**: The slow build-up pays off, but readers should be prepared for a story that demands attention and patience.\n\n## Bottom Line\n\n*Pathfinder* is an ambitious and thought-provoking science fiction novel that rewards patient readers with its intricate plotting and inventive time-manipulation concepts.\n\n<div class=\"footnotes\">\n\n1. Publishers Weekly, 2010\n2. Kirkus Reviews, 2010\n\n</div>";
+
+  document.getElementById("output").innerHTML = marked.parse(fullMd);
+
+  const related = storedData.related || [];
+  if (related.length > 0) {
+    const c = document.getElementById("related");
+    c.innerHTML = "<h2>You Might Also Like</h2>";
+    related.forEach(b => {
+      const url = TINYCAT_BASE + "/search?search_type=title&search=" + encodeURIComponent(b.title);
+      const d = document.createElement("div");
+      d.className = "related-book";
+      d.innerHTML =
+        '<div class="rb-title">' + b.title + '</div>' +
+        '<div class="rb-author">' + b.author + '</div>' +
+        '<div class="rb-reason">' + b.reason + '</div>' +
+        '<a class="rb-link" href="' + url + '" target="_blank" rel="noopener">Search in My Library ↗</a>';
+      c.appendChild(d);
+    });
+  }
+</script>
+</body>
+</html>

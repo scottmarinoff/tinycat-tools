@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Review: The Universal One by Walter Russell</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#1a1612;--paper:#f5f0e8;--muted:#7a6f62;--rule:#d4c9b8;--accent:#8b3a2a}
+    body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;padding:2rem 1rem 4rem}
+    .page{max-width:660px;margin:0 auto}
+    header{border-bottom:2px solid var(--ink);padding-bottom:.75rem;margin-bottom:1.75rem}
+    header h1{font-family:'Libre Baskerville',Georgia,serif;font-size:1.1rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    #output h1,#output h2,#output h3{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;margin-top:1.6rem;margin-bottom:.4rem;line-height:1.3}
+    #output h1{font-size:1.35rem} #output h2{font-size:1.15rem;border-bottom:1px solid var(--rule);padding-bottom:.25rem}
+    #output h3{font-size:1rem;color:var(--muted)} #output p{margin-bottom:.85rem}
+    #output strong{font-weight:700} #output em{font-style:italic}
+    #output ul,#output ol{margin:0 0 .85rem 1.4rem} #output li{margin-bottom:.3rem}
+    #output sup{font-size:.7rem;vertical-align:super;line-height:0;color:var(--accent)}
+    #output a{color:var(--accent);text-decoration:none} #output a:hover{text-decoration:underline}
+    .footnotes{margin-top:1.5rem;padding-top:.75rem;border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);line-height:1.5}
+    #related{margin-top:1.5rem} #related h2{font-family:'Libre Baskerville',Georgia,serif;font-size:1.15rem;font-weight:700;border-bottom:1px solid var(--rule);padding-bottom:.25rem;margin-bottom:.9rem}
+    .related-book{margin-bottom:1rem;padding-left:.75rem;border-left:2px solid var(--rule)}
+    .rb-title{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;font-size:.98rem}
+    .rb-author{font-size:.88rem;color:var(--muted);margin-bottom:.2rem}
+    .rb-reason{font-size:.9rem;margin-bottom:.3rem}
+    .rb-link{font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+    .rb-link:hover{text-decoration:underline}
+    .index-btn{display:inline-block;margin-top:2rem;font-family:'Source Sans 3',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.45rem 1rem;background:var(--accent);color:#fff;border-radius:3px;text-decoration:none;transition:opacity .15s}
+    .index-btn:hover{opacity:.85}
+    .index-btn-row{text-align:right}
+    .meta{font-size:.8rem;color:var(--muted);margin-top:2rem}
+  </style>
+</head>
+<body>
+<div class="page">
+  <header><h1>Book Review Summary</h1></header>
+  <div id="output"></div>
+  <div id="related"></div>
+  <div class="index-btn-row"><a class="index-btn" href="../reviews-index.html">Read other reviews</a></div>
+  <p class="meta">Generated May 1, 2026</p>
+</div>
+<script>
+  const TINYCAT_BASE = "https://www.librarycat.org/lib/dispensed_snores";
+  const storedData = {"review":"## Overview\n\"The Universal One\" is a 1926 cosmological treatise by Walter Russell, an American polymath who presented his unique theory of the universe based on the concept of rhythmic balanced interchange. The book attempts to unify science, philosophy, and spirituality by proposing that all matter and energy are manifestations of light and motion emanating from a single source. Russell's work challenges conventional physics and offers an alternative explanation for atomic structure, gravity, and the nature of reality.\n\n## Critical Reception\nUpon its initial publication, \"The Universal One\" received limited mainstream scientific attention, with most physicists dismissing Russell's theories as pseudoscience lacking empirical foundation.<sup>[1]</sup> However, the book developed a devoted following among New Thought practitioners and alternative science enthusiasts who praised Russell's visionary synthesis of spiritual and physical principles. Nikola Tesla reportedly expressed admiration for Russell's work, though the extent of their intellectual exchange remains debated by historians.<sup>[2]</sup> Contemporary readers continue to discover the text, with some finding profound insights in Russell's cosmology while others critique its departure from established scientific methodology. The University of Science and Philosophy, founded by Russell, continues to promote his teachings, maintaining a dedicated readership decades after publication.\n\n## Review Voices\n**The Spiritual Seeker**: Finds Russell's integration of consciousness with physical law to be transformative, viewing the book as a bridge between mysticism and science.\n\n**The Academic Physicist**: Considers the work scientifically untenable, noting that Russell's atomic model contradicts well-established quantum mechanics and lacks predictive power.<sup>[1]</sup>\n\n**The Alternative Science Enthusiast**: Celebrates Russell as a misunderstood genius whose ideas about wave-based reality anticipated certain aspects of modern field theories.\n\n**The Philosophical Reader**: Appreciates the ambitious scope and poetic language while remaining agnostic about the scientific claims.\n\n## Bottom Line\nA fascinating artifact of early 20th-century esoteric cosmology that rewards open-minded readers seeking alternative frameworks, though it should not be mistaken for peer-reviewed science.","footnotes":["Martin Gardner, \"Fads and Fallacies in the Name of Science\", 1957","Michael Talbot, \"The Holographic Universe\", 1991"],"related":[{"title":"The Secret Doctrine","author":"Helena Blavatsky","reason":"Another ambitious 19th-century synthesis of science, spirituality, and cosmology that influenced esoteric thought."},{"title":"The Kybalion","author":"Three Initiates","reason":"A contemporaneous Hermetic text exploring universal principles that shares Russell's interest in vibration and polarity."},{"title":"A New Science of Life","author":"Rupert Sheldrake","reason":"A more recent work challenging scientific orthodoxy with alternative theories about nature and form."}]};
+  const fullMd = "## Overview\n\"The Universal One\" is a 1926 cosmological treatise by Walter Russell, an American polymath who presented his unique theory of the universe based on the concept of rhythmic balanced interchange. The book attempts to unify science, philosophy, and spirituality by proposing that all matter and energy are manifestations of light and motion emanating from a single source. Russell's work challenges conventional physics and offers an alternative explanation for atomic structure, gravity, and the nature of reality.\n\n## Critical Reception\nUpon its initial publication, \"The Universal One\" received limited mainstream scientific attention, with most physicists dismissing Russell's theories as pseudoscience lacking empirical foundation.<sup>[1]</sup> However, the book developed a devoted following among New Thought practitioners and alternative science enthusiasts who praised Russell's visionary synthesis of spiritual and physical principles. Nikola Tesla reportedly expressed admiration for Russell's work, though the extent of their intellectual exchange remains debated by historians.<sup>[2]</sup> Contemporary readers continue to discover the text, with some finding profound insights in Russell's cosmology while others critique its departure from established scientific methodology. The University of Science and Philosophy, founded by Russell, continues to promote his teachings, maintaining a dedicated readership decades after publication.\n\n## Review Voices\n**The Spiritual Seeker**: Finds Russell's integration of consciousness with physical law to be transformative, viewing the book as a bridge between mysticism and science.\n\n**The Academic Physicist**: Considers the work scientifically untenable, noting that Russell's atomic model contradicts well-established quantum mechanics and lacks predictive power.<sup>[1]</sup>\n\n**The Alternative Science Enthusiast**: Celebrates Russell as a misunderstood genius whose ideas about wave-based reality anticipated certain aspects of modern field theories.\n\n**The Philosophical Reader**: Appreciates the ambitious scope and poetic language while remaining agnostic about the scientific claims.\n\n## Bottom Line\nA fascinating artifact of early 20th-century esoteric cosmology that rewards open-minded readers seeking alternative frameworks, though it should not be mistaken for peer-reviewed science.\n\n<div class=\"footnotes\">\n\n1. Martin Gardner, \"Fads and Fallacies in the Name of Science\", 1957\n2. Michael Talbot, \"The Holographic Universe\", 1991\n\n</div>";
+
+  document.getElementById("output").innerHTML = marked.parse(fullMd);
+
+  const related = storedData.related || [];
+  if (related.length > 0) {
+    const c = document.getElementById("related");
+    c.innerHTML = "<h2>You Might Also Like</h2>";
+    related.forEach(b => {
+      const url = TINYCAT_BASE + "/search?search_type=title&search=" + encodeURIComponent(b.title);
+      const d = document.createElement("div");
+      d.className = "related-book";
+      d.innerHTML =
+        '<div class="rb-title">' + b.title + '</div>' +
+        '<div class="rb-author">' + b.author + '</div>' +
+        '<div class="rb-reason">' + b.reason + '</div>' +
+        '<a class="rb-link" href="' + url + '" target="_blank" rel="noopener">Search in My Library ↗</a>';
+      c.appendChild(d);
+    });
+  }
+</script>
+</body>
+</html>
