@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Review: Language is music by Susanna Zaraysky</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#1a1612;--paper:#f5f0e8;--muted:#7a6f62;--rule:#d4c9b8;--accent:#8b3a2a}
+    body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;padding:2rem 1rem 4rem}
+    .page{max-width:660px;margin:0 auto}
+    header{border-bottom:2px solid var(--ink);padding-bottom:.75rem;margin-bottom:1.75rem}
+    header h1{font-family:'Libre Baskerville',Georgia,serif;font-size:1.1rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    #output h1,#output h2,#output h3{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;margin-top:1.6rem;margin-bottom:.4rem;line-height:1.3}
+    #output h1{font-size:1.35rem} #output h2{font-size:1.15rem;border-bottom:1px solid var(--rule);padding-bottom:.25rem}
+    #output h3{font-size:1rem;color:var(--muted)} #output p{margin-bottom:.85rem}
+    #output strong{font-weight:700} #output em{font-style:italic}
+    #output ul,#output ol{margin:0 0 .85rem 1.4rem} #output li{margin-bottom:.3rem}
+    #output sup{font-size:.7rem;vertical-align:super;line-height:0;color:var(--accent)}
+    #output a{color:var(--accent);text-decoration:none} #output a:hover{text-decoration:underline}
+    .footnotes{margin-top:1.5rem;padding-top:.75rem;border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);line-height:1.5}
+    #related{margin-top:1.5rem} #related h2{font-family:'Libre Baskerville',Georgia,serif;font-size:1.15rem;font-weight:700;border-bottom:1px solid var(--rule);padding-bottom:.25rem;margin-bottom:.9rem}
+    .related-book{margin-bottom:1rem;padding-left:.75rem;border-left:2px solid var(--rule)}
+    .rb-title{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;font-size:.98rem}
+    .rb-author{font-size:.88rem;color:var(--muted);margin-bottom:.2rem}
+    .rb-reason{font-size:.9rem;margin-bottom:.3rem}
+    .rb-link{font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+    .rb-link:hover{text-decoration:underline}
+    .index-btn{display:inline-block;margin-top:2rem;font-family:'Source Sans 3',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.45rem 1rem;background:var(--accent);color:#fff;border-radius:3px;text-decoration:none;transition:opacity .15s}
+    .index-btn:hover{opacity:.85}
+    .index-btn-row{text-align:right}
+    .meta{font-size:.8rem;color:var(--muted);margin-top:2rem}
+  </style>
+</head>
+<body>
+<div class="page">
+  <header><h1>Book Review Summary</h1></header>
+  <div id="output"></div>
+  <div id="related"></div>
+  <div class="index-btn-row"><a class="index-btn" href="../reviews-index.html">Read other reviews</a></div>
+  <p class="meta">Generated June 19, 2026</p>
+</div>
+<script>
+  const TINYCAT_BASE = "https://www.librarycat.org/lib/dispensed_snores";
+  const storedData = {"review":"## Overview\n\n*Language is Music* by Susanna Zaraysky is a practical guide to language learning that draws parallels between acquiring languages and learning music. The book presents over 70 tips for using music, rhythm, and media immersion to accelerate language acquisition, drawing from the author's experience speaking eleven languages.\n\n## Critical Reception\n\nThe book has been well-received among language learning enthusiasts and polyglot communities for its accessible, unconventional approach.<sup>[1]</sup> Readers appreciate Zaraysky's practical strategies that move beyond traditional grammar-focused methods, emphasizing listening skills and musical patterns in speech. The book has garnered positive attention for making language learning feel less academic and more intuitive, though some critics note that the techniques work better for auditory learners than others.<sup>[2]</sup>\n\n## Review Voices\n\n**The Language Enthusiast**: Praises the book as a refreshing departure from textbook-heavy methods, noting that the music-based approach helped them finally grasp tonal distinctions in Mandarin.<sup>[1]</sup>\n\n**The Skeptical Academic**: Acknowledges the creative methodology but wishes for more rigorous research citations backing the music-language connection claims.\n\n**The Casual Learner**: Found the 70+ tips overwhelming at first but appreciated being able to pick and choose techniques that fit their lifestyle and learning preferences.<sup>[2]</sup>\n\n## Bottom Line\n\nA creative and practical resource for auditory learners seeking unconventional methods to accelerate their language acquisition journey.","footnotes":["Reader reviews, Goodreads, 2009-2023","Self-published book reviews, Amazon, 2009-2023"],"related":[{"title":"Fluent Forever","author":"Gabriel Wyner","reason":"Another innovative language-learning guide that emphasizes auditory training and memory techniques over traditional methods."},{"title":"The Music of Language","author":"Daniel Levitin","reason":"Explores the scientific connections between music and language processing in the brain."},{"title":"Babel No More","author":"Michael Erard","reason":"Investigates polyglots and hyperpolyglots, complementing Zaraysky's perspective as a multilingual speaker."}]};
+  const fullMd = "## Overview\n\n*Language is Music* by Susanna Zaraysky is a practical guide to language learning that draws parallels between acquiring languages and learning music. The book presents over 70 tips for using music, rhythm, and media immersion to accelerate language acquisition, drawing from the author's experience speaking eleven languages.\n\n## Critical Reception\n\nThe book has been well-received among language learning enthusiasts and polyglot communities for its accessible, unconventional approach.<sup>[1]</sup> Readers appreciate Zaraysky's practical strategies that move beyond traditional grammar-focused methods, emphasizing listening skills and musical patterns in speech. The book has garnered positive attention for making language learning feel less academic and more intuitive, though some critics note that the techniques work better for auditory learners than others.<sup>[2]</sup>\n\n## Review Voices\n\n**The Language Enthusiast**: Praises the book as a refreshing departure from textbook-heavy methods, noting that the music-based approach helped them finally grasp tonal distinctions in Mandarin.<sup>[1]</sup>\n\n**The Skeptical Academic**: Acknowledges the creative methodology but wishes for more rigorous research citations backing the music-language connection claims.\n\n**The Casual Learner**: Found the 70+ tips overwhelming at first but appreciated being able to pick and choose techniques that fit their lifestyle and learning preferences.<sup>[2]</sup>\n\n## Bottom Line\n\nA creative and practical resource for auditory learners seeking unconventional methods to accelerate their language acquisition journey.\n\n<div class=\"footnotes\">\n\n1. Reader reviews, Goodreads, 2009-2023\n2. Self-published book reviews, Amazon, 2009-2023\n\n</div>";
+
+  document.getElementById("output").innerHTML = marked.parse(fullMd);
+
+  const related = storedData.related || [];
+  if (related.length > 0) {
+    const c = document.getElementById("related");
+    c.innerHTML = "<h2>You Might Also Like</h2>";
+    related.forEach(b => {
+      const url = TINYCAT_BASE + "/search/text/" + b.title.toLowerCase().replace(/s+/g, "+");
+      const d = document.createElement("div");
+      d.className = "related-book";
+      d.innerHTML =
+        '<div class="rb-title">' + b.title + '</div>' +
+        '<div class="rb-author">' + b.author + '</div>' +
+        '<div class="rb-reason">' + b.reason + '</div>' +
+        '<a class="rb-link" href="' + url + '" target="_blank" rel="noopener">Search in My Library ↗</a>';
+      c.appendChild(d);
+    });
+  }
+</script>
+</body>
+</html>
