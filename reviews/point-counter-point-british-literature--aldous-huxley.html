@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Review: Point Counter Point (British Literature) by Aldous Huxley</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#1a1612;--paper:#f5f0e8;--muted:#7a6f62;--rule:#d4c9b8;--accent:#8b3a2a}
+    body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;padding:2rem 1rem 4rem}
+    .page{max-width:660px;margin:0 auto}
+    header{border-bottom:2px solid var(--ink);padding-bottom:.75rem;margin-bottom:1.75rem}
+    header h1{font-family:'Libre Baskerville',Georgia,serif;font-size:1.1rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    #output h1,#output h2,#output h3{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;margin-top:1.6rem;margin-bottom:.4rem;line-height:1.3}
+    #output h1{font-size:1.35rem} #output h2{font-size:1.15rem;border-bottom:1px solid var(--rule);padding-bottom:.25rem}
+    #output h3{font-size:1rem;color:var(--muted)} #output p{margin-bottom:.85rem}
+    #output strong{font-weight:700} #output em{font-style:italic}
+    #output ul,#output ol{margin:0 0 .85rem 1.4rem} #output li{margin-bottom:.3rem}
+    #output sup{font-size:.7rem;vertical-align:super;line-height:0;color:var(--accent)}
+    #output a{color:var(--accent);text-decoration:none} #output a:hover{text-decoration:underline}
+    .footnotes{margin-top:1.5rem;padding-top:.75rem;border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);line-height:1.5}
+    #related{margin-top:1.5rem} #related h2{font-family:'Libre Baskerville',Georgia,serif;font-size:1.15rem;font-weight:700;border-bottom:1px solid var(--rule);padding-bottom:.25rem;margin-bottom:.9rem}
+    .related-book{margin-bottom:1rem;padding-left:.75rem;border-left:2px solid var(--rule)}
+    .rb-title{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;font-size:.98rem}
+    .rb-author{font-size:.88rem;color:var(--muted);margin-bottom:.2rem}
+    .rb-reason{font-size:.9rem;margin-bottom:.3rem}
+    .rb-link{font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+    .rb-link:hover{text-decoration:underline}
+    .index-btn{display:inline-block;margin-top:2rem;font-family:'Source Sans 3',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.45rem 1rem;background:var(--accent);color:#fff;border-radius:3px;text-decoration:none;transition:opacity .15s}
+    .index-btn:hover{opacity:.85}
+    .index-btn-row{text-align:right}
+    .meta{font-size:.8rem;color:var(--muted);margin-top:2rem}
+  </style>
+</head>
+<body>
+<div class="page">
+  <header><h1>Book Review Summary</h1></header>
+  <div id="output"></div>
+  <div id="related"></div>
+  <div class="index-btn-row"><a class="index-btn" href="../reviews-index.html">Read other reviews</a></div>
+  <p class="meta">Generated July 8, 2026</p>
+</div>
+<script>
+  const TINYCAT_BASE = "https://www.librarycat.org/lib/dispensed_snores";
+  const storedData = {"review":"## Overview\n\n*Point Counter Point* (1928) is Aldous Huxley's ambitious modernist novel that weaves together the lives of London intellectuals, artists, and socialites in a polyphonic narrative structure inspired by musical counterpoint. The novel explores themes of love, betrayal, ideology, and the failure of modern civilization through interconnected storylines featuring characters who represent different philosophical positions and ways of living.\n\n## Critical Reception\n\nUpon publication, *Point Counter Point* was hailed as Huxley's most accomplished work and a landmark of modernist fiction, establishing him as a major literary figure of his generation.<sup>[1]</sup> Critics praised the novel's innovative structure and its penetrating satire of intellectual pretension, though some found its characters cold and overly cerebral.<sup>[2]</sup> The book was commercially successful and cemented Huxley's reputation as a brilliant social critic, though later assessments have debated whether its ideas overwhelm its narrative art. Contemporary scholars continue to study the novel for its experimental form and its engagement with the cultural crises of the interwar period.\n\n## Review Voices\n\n**The Literary Critic**: Huxley's counterpoint technique brilliantly mirrors the fragmentation of modern consciousness, creating a symphonic structure that few novels have matched in ambition.<sup>[1]</sup>\n\n**The Casual Reader**: The philosophical discussions can feel dense and the characters unsympathetic, but the satire remains sharp and darkly entertaining.\n\n**The Academic Scholar**: This novel serves as an essential document of 1920s intellectual life, dramatizing the clash between rationalism, mysticism, and political extremism that defined the era.<sup>[2]</sup>\n\n## Bottom Line\n\nA challenging but rewarding modernist masterpiece that dissects the moral and intellectual bankruptcy of its age with savage wit and structural innovation.","footnotes":["David Bradshaw, Introduction to Oxford World's Classics edition, 2004","Jerome Meckier, Aldous Huxley: Modern Satirical Novelist of Ideas, 2006"],"related":[{"title":"Eyeless in Gaza","author":"Aldous Huxley","reason":"Another Huxley novel employing experimental structure to examine intellectual and spiritual crisis in interwar England."},{"title":"The Counterfeiters","author":"André Gide","reason":"A similarly polyphonic modernist novel exploring artistic creation and moral corruption among French intellectuals."},{"title":"Women in Love","author":"D.H. Lawrence","reason":"Lawrence (satirized in Point Counter Point as Rampion) offers his own intense exploration of love, philosophy, and modern civilization's discontents."}]};
+  const fullMd = "## Overview\n\n*Point Counter Point* (1928) is Aldous Huxley's ambitious modernist novel that weaves together the lives of London intellectuals, artists, and socialites in a polyphonic narrative structure inspired by musical counterpoint. The novel explores themes of love, betrayal, ideology, and the failure of modern civilization through interconnected storylines featuring characters who represent different philosophical positions and ways of living.\n\n## Critical Reception\n\nUpon publication, *Point Counter Point* was hailed as Huxley's most accomplished work and a landmark of modernist fiction, establishing him as a major literary figure of his generation.<sup>[1]</sup> Critics praised the novel's innovative structure and its penetrating satire of intellectual pretension, though some found its characters cold and overly cerebral.<sup>[2]</sup> The book was commercially successful and cemented Huxley's reputation as a brilliant social critic, though later assessments have debated whether its ideas overwhelm its narrative art. Contemporary scholars continue to study the novel for its experimental form and its engagement with the cultural crises of the interwar period.\n\n## Review Voices\n\n**The Literary Critic**: Huxley's counterpoint technique brilliantly mirrors the fragmentation of modern consciousness, creating a symphonic structure that few novels have matched in ambition.<sup>[1]</sup>\n\n**The Casual Reader**: The philosophical discussions can feel dense and the characters unsympathetic, but the satire remains sharp and darkly entertaining.\n\n**The Academic Scholar**: This novel serves as an essential document of 1920s intellectual life, dramatizing the clash between rationalism, mysticism, and political extremism that defined the era.<sup>[2]</sup>\n\n## Bottom Line\n\nA challenging but rewarding modernist masterpiece that dissects the moral and intellectual bankruptcy of its age with savage wit and structural innovation.\n\n<div class=\"footnotes\">\n\n1. David Bradshaw, Introduction to Oxford World's Classics edition, 2004\n2. Jerome Meckier, Aldous Huxley: Modern Satirical Novelist of Ideas, 2006\n\n</div>";
+
+  document.getElementById("output").innerHTML = marked.parse(fullMd);
+
+  const related = storedData.related || [];
+  if (related.length > 0) {
+    const c = document.getElementById("related");
+    c.innerHTML = "<h2>You Might Also Like</h2>";
+    related.forEach(b => {
+      const url = TINYCAT_BASE + "/search/text/" + b.title.toLowerCase().replace(/s+/g, "+");
+      const d = document.createElement("div");
+      d.className = "related-book";
+      d.innerHTML =
+        '<div class="rb-title">' + b.title + '</div>' +
+        '<div class="rb-author">' + b.author + '</div>' +
+        '<div class="rb-reason">' + b.reason + '</div>' +
+        '<a class="rb-link" href="' + url + '" target="_blank" rel="noopener">Search in My Library ↗</a>';
+      c.appendChild(d);
+    });
+  }
+</script>
+</body>
+</html>
