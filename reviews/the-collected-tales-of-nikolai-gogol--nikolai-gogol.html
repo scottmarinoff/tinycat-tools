@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Review: The Collected Tales of Nikolai Gogol by Nikolai Gogol</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#1a1612;--paper:#f5f0e8;--muted:#7a6f62;--rule:#d4c9b8;--accent:#8b3a2a}
+    body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.6;min-height:100vh;padding:2rem 1rem 4rem}
+    .page{max-width:660px;margin:0 auto}
+    header{border-bottom:2px solid var(--ink);padding-bottom:.75rem;margin-bottom:1.75rem}
+    header h1{font-family:'Libre Baskerville',Georgia,serif;font-size:1.1rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    #output h1,#output h2,#output h3{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;margin-top:1.6rem;margin-bottom:.4rem;line-height:1.3}
+    #output h1{font-size:1.35rem} #output h2{font-size:1.15rem;border-bottom:1px solid var(--rule);padding-bottom:.25rem}
+    #output h3{font-size:1rem;color:var(--muted)} #output p{margin-bottom:.85rem}
+    #output strong{font-weight:700} #output em{font-style:italic}
+    #output ul,#output ol{margin:0 0 .85rem 1.4rem} #output li{margin-bottom:.3rem}
+    #output sup{font-size:.7rem;vertical-align:super;line-height:0;color:var(--accent)}
+    #output a{color:var(--accent);text-decoration:none} #output a:hover{text-decoration:underline}
+    .footnotes{margin-top:1.5rem;padding-top:.75rem;border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);line-height:1.5}
+    #related{margin-top:1.5rem} #related h2{font-family:'Libre Baskerville',Georgia,serif;font-size:1.15rem;font-weight:700;border-bottom:1px solid var(--rule);padding-bottom:.25rem;margin-bottom:.9rem}
+    .related-book{margin-bottom:1rem;padding-left:.75rem;border-left:2px solid var(--rule)}
+    .rb-title{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;font-size:.98rem}
+    .rb-author{font-size:.88rem;color:var(--muted);margin-bottom:.2rem}
+    .rb-reason{font-size:.9rem;margin-bottom:.3rem}
+    .rb-link{font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+    .rb-link:hover{text-decoration:underline}
+    .index-btn{display:inline-block;margin-top:2rem;font-family:'Source Sans 3',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.45rem 1rem;background:var(--accent);color:#fff;border-radius:3px;text-decoration:none;transition:opacity .15s}
+    .index-btn:hover{opacity:.85}
+    .index-btn-row{text-align:right}
+    .meta{font-size:.8rem;color:var(--muted);margin-top:2rem}
+  </style>
+</head>
+<body>
+<div class="page">
+  <header><h1>Book Review Summary</h1></header>
+  <div id="output"></div>
+  <div id="related"></div>
+  <div class="index-btn-row"><a class="index-btn" href="../reviews-index.html">Read other reviews</a></div>
+  <p class="meta">Generated September 28, 2026</p>
+</div>
+<script>
+  const TINYCAT_BASE = "https://www.librarycat.org/lib/dispensed_snores";
+  const storedData = {"review":"## Overview\n\n\"The Collected Tales of Nikolai Gogol\" brings together the masterful short fiction of one of Russia's most influential 19th-century writers. Translated by Richard Pevear and Larissa Volokhonsky, this collection includes iconic stories such as \"The Overcoat,\" \"The Nose,\" and \"Diary of a Madman,\" showcasing Gogol's unique blend of grotesque humor, social satire, and supernatural elements.\n\n## Critical Reception\n\nThe Pevear-Volokhonsky translation has been widely praised for capturing Gogol's distinctive voice and comedic timing.<sup>[1]</sup> Critics have lauded the collection for making Gogol's genius accessible to English readers while preserving the strangeness and absurdity of his prose. The New York Times Book Review highlighted the translation's ability to convey Gogol's \"verbal inventiveness and his wild humor.\"<sup>[2]</sup> Scholars continue to regard these tales as foundational texts of Russian literature, influencing writers from Dostoevsky to Bulgakov.\n\n## Review Voices\n\n**The Literary Critic**: Gogol's tales remain astonishing in their modernity—his bureaucratic nightmares and identity crises feel eerily contemporary.<sup>[1]</sup>\n\n**The Casual Reader**: The stories are darkly funny and surprisingly readable, though some of the 19th-century Russian context takes adjustment.\n\n**The Translation Enthusiast**: Pevear and Volokhonsky deliver Gogol with the energy and strangeness he deserves, far surpassing older English versions.<sup>[2]</sup>\n\n## Bottom Line\n\nAn essential collection that reveals Gogol as a master of the absurd and a profound observer of human folly.","footnotes":["Richard Pevear, Introduction to The Collected Tales of Nikolai Gogol, 1998","Michiko Kakutani, The New York Times Book Review, 1998"],"related":[{"title":"Dead Souls","author":"Nikolai Gogol","reason":"Gogol's celebrated novel extends his satirical vision of Russian society and bureaucratic absurdity."},{"title":"The Master and Margarita","author":"Mikhail Bulgakov","reason":"Bulgakov was deeply influenced by Gogol's blend of fantasy, satire, and dark humor."},{"title":"Notes from Underground","author":"Fyodor Dostoevsky","reason":"Dostoevsky famously acknowledged Gogol's influence, and this novella shares themes of alienation and psychological intensity."}]};
+  const fullMd = "## Overview\n\n\"The Collected Tales of Nikolai Gogol\" brings together the masterful short fiction of one of Russia's most influential 19th-century writers. Translated by Richard Pevear and Larissa Volokhonsky, this collection includes iconic stories such as \"The Overcoat,\" \"The Nose,\" and \"Diary of a Madman,\" showcasing Gogol's unique blend of grotesque humor, social satire, and supernatural elements.\n\n## Critical Reception\n\nThe Pevear-Volokhonsky translation has been widely praised for capturing Gogol's distinctive voice and comedic timing.<sup>[1]</sup> Critics have lauded the collection for making Gogol's genius accessible to English readers while preserving the strangeness and absurdity of his prose. The New York Times Book Review highlighted the translation's ability to convey Gogol's \"verbal inventiveness and his wild humor.\"<sup>[2]</sup> Scholars continue to regard these tales as foundational texts of Russian literature, influencing writers from Dostoevsky to Bulgakov.\n\n## Review Voices\n\n**The Literary Critic**: Gogol's tales remain astonishing in their modernity—his bureaucratic nightmares and identity crises feel eerily contemporary.<sup>[1]</sup>\n\n**The Casual Reader**: The stories are darkly funny and surprisingly readable, though some of the 19th-century Russian context takes adjustment.\n\n**The Translation Enthusiast**: Pevear and Volokhonsky deliver Gogol with the energy and strangeness he deserves, far surpassing older English versions.<sup>[2]</sup>\n\n## Bottom Line\n\nAn essential collection that reveals Gogol as a master of the absurd and a profound observer of human folly.\n\n<div class=\"footnotes\">\n\n1. Richard Pevear, Introduction to The Collected Tales of Nikolai Gogol, 1998\n2. Michiko Kakutani, The New York Times Book Review, 1998\n\n</div>";
+
+  document.getElementById("output").innerHTML = marked.parse(fullMd);
+
+  const related = storedData.related || [];
+  if (related.length > 0) {
+    const c = document.getElementById("related");
+    c.innerHTML = "<h2>You Might Also Like</h2>";
+    related.forEach(b => {
+      const url = TINYCAT_BASE + "/search/text/" + b.title.toLowerCase().replace(/s+/g, "+");
+      const d = document.createElement("div");
+      d.className = "related-book";
+      d.innerHTML =
+        '<div class="rb-title">' + b.title + '</div>' +
+        '<div class="rb-author">' + b.author + '</div>' +
+        '<div class="rb-reason">' + b.reason + '</div>' +
+        '<a class="rb-link" href="' + url + '" target="_blank" rel="noopener">Search in My Library ↗</a>';
+      c.appendChild(d);
+    });
+  }
+</script>
+</body>
+</html>
